@@ -66,6 +66,14 @@
         $(document).ready(function(){
         $("#toggle-login").click(function(){
             $("#login-form").slideToggle("fast");
+            if($("#toggle-login").hasClass("icon-arrow-right")){
+                $("#toggle-login").removeClass("icon-arrow-right");
+                $("#toggle-login").addClass("icon-arrow-down")
+            }
+            else {
+                $("#toggle-login").removeClass("icon-arrow-down");
+                $("#toggle-login").addClass("icon-arrow-right")
+            }
         });
         });
     </script>
@@ -119,7 +127,10 @@
                     <a  href="${pageContext.request.contextPath}${_login_uri_saml}"><spring:message code="login.sso" text="SSO login" /></a><hr />
                 </c:if>
                 <c:if test="${!empty _login_uri && !empty _login_field_user}">
-                    <p id="toggle-login" style="color: #FFFFFF;padding-bottom: 5px;"><spring:message code="admin_login" text="Kirjautuminen" /></p>
+                    <div>
+                    <div class="headerIcon icon-arrow-right" id="toggle-login" style="float:left;margin-right:.5em;"></div>
+                    <p style="color: #FFFFFF;padding-bottom: 5px;"><spring:message code="admin_login" text="Kirjautuminen" /></p>
+                    </div>
                     <form id="login-form" style="display: none;" action='${pageContext.request.contextPath}${_login_uri}' method="post" accept-charset="UTF-8">
                         <input size="16" id="username" name="${_login_field_user}" type="text" placeholder="<spring:message code="username" text="Username" />" autofocus
                                required>
