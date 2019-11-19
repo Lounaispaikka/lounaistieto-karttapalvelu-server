@@ -60,6 +60,24 @@
         }
     </style>
     <!-- ############# /css ################# -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- ====SCRIPTI==== -->
+    <script>
+        $(document).ready(function(){
+        $("#toggle-login").click(function(){
+            $("#login-form").slideToggle("fast");
+            if($("#toggle-login").hasClass("icon-arrow-right")){
+                $("#toggle-login").removeClass("icon-arrow-right");
+                $("#toggle-login").addClass("icon-arrow-down")
+            }
+            else {
+                $("#toggle-login").removeClass("icon-arrow-down");
+                $("#toggle-login").addClass("icon-arrow-right")
+            }
+        });
+        });
+    </script>
+    <!-- ====SCRIPTI==== -->
 </head>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -71,6 +89,7 @@
 
     gtag('config', 'UA-68203085-5');
 </script>
+
 <body>
 
 <nav id="maptools">
@@ -105,11 +124,14 @@
             <%-- Otherwise show appropriate logins --%>
             <c:otherwise>
                 <c:if test="${!empty _login_uri_saml}">
-                    <a href="${pageContext.request.contextPath}${_login_uri_saml}"><spring:message code="login.sso" text="SSO login" /></a><hr />
+                    <a  href="${pageContext.request.contextPath}${_login_uri_saml}"><spring:message code="login.sso" text="SSO login" /></a><hr />
                 </c:if>
                 <c:if test="${!empty _login_uri && !empty _login_field_user}">
+                    <div>
+                    <div class="headerIcon icon-arrow-right" id="toggle-login" style="float:left;margin-right:.5em;"></div>
                     <p style="color: #FFFFFF;padding-bottom: 5px;"><spring:message code="admin_login" text="Kirjautuminen" /></p>
-                    <form action='${pageContext.request.contextPath}${_login_uri}' method="post" accept-charset="UTF-8">
+                    </div>
+                    <form id="login-form" style="display: none;" action='${pageContext.request.contextPath}${_login_uri}' method="post" accept-charset="UTF-8">
                         <input size="16" id="username" name="${_login_field_user}" type="text" placeholder="<spring:message code="username" text="Username" />" autofocus
                                required>
                         <input size="16" id="password" name="${_login_field_pass}" type="password" placeholder="<spring:message code="password" text="Password" />" required>
@@ -121,6 +143,8 @@
                 </c:if>
             </c:otherwise>
         </c:choose>
+    </div>
+    <div class="affiliate_logos">
     </div>
 </nav>
 <div id="contentMap" class="oskariui container-fluid">
