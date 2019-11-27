@@ -11,6 +11,15 @@
 
     <script type="text/javascript" src="/Oskari/libraries/jquery/jquery-1.10.2.js">
     </script>
+    <!-- ====SCRIPTI==== -->
+    <script>
+        $(document).ready(function(){
+        $("#toggle-login").click(function(){
+            $("#login-form").slideToggle("fast");
+        });
+        });
+    </script>
+    <!-- ====SCRIPTI==== -->
 
     <!-- ############# css ################# -->
     <link
