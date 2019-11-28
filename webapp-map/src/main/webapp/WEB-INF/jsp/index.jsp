@@ -109,7 +109,7 @@
         <c:choose>
             <%-- If logout url is present - so logout link --%>
             <c:when test="${!empty _logout_uri}">
-                <a href="${pageContext.request.contextPath}${_logout_uri}"><spring:message code="logout" text="Logout" /></a>
+                <a class="login-a" href="${pageContext.request.contextPath}${_logout_uri}"><spring:message code="logout" text="Logout" /></a>
             </c:when>
             <%-- Otherwise show appropriate logins --%>
             <c:otherwise>
@@ -126,7 +126,7 @@
                     </form>
                 </c:if>
                 <c:if test="${!empty _registration_uri}">
-                    <a href="${pageContext.request.contextPath}${_registration_uri}"><spring:message code="user.registration" text="Register" /></a>
+                    <a class="login-a" href="${pageContext.request.contextPath}${_registration_uri}"><spring:message code="user.registration" text="Register" /></a>
                 </c:if>
             </c:otherwise>
         </c:choose>
