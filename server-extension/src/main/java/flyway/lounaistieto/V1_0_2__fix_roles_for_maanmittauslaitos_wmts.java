@@ -1,16 +1,16 @@
-package flyway.lounaistieto;
+/*package flyway.lounaistieto;
 
-import fi.mml.portti.domain.permissions.Permissions;
-import fi.mml.portti.service.db.permissions.PermissionsService;
-import fi.mml.portti.service.db.permissions.PermissionsServiceIbatisImpl;
 import fi.nls.oskari.domain.Role;
 import fi.nls.oskari.domain.User;
 import fi.nls.oskari.domain.map.OskariLayer;
 import fi.nls.oskari.log.LogFactory;
 import fi.nls.oskari.log.Logger;
-import fi.nls.oskari.map.data.domain.OskariLayerResource;
-import fi.nls.oskari.permission.domain.Permission;
-import fi.nls.oskari.permission.domain.Resource;
+
+import org.oskari.permissions.PermissionService;
+import org.oskari.permissions.PermissionServiceMybatisImpl;
+import org.oskari.permissions.model.OskariLayerResource;
+import org.oskari.permissions.model.Permission;
+import org.oskari.permissions.model.Resource;
 import fi.nls.oskari.service.ServiceException;
 import fi.nls.oskari.service.UserService;
 import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
@@ -23,9 +23,8 @@ import java.util.List;
 public class V1_0_2__fix_roles_for_maanmittauslaitos_wmts implements JdbcMigration {
     private static final Logger LOG = LogFactory.getLogger(V1_0_2__fix_roles_for_maanmittauslaitos_wmts.class);
 
-    public void migrate(Connection connection)
-            throws SQLException {
-        PermissionsService service = new PermissionsServiceIbatisImpl();
+    public void migrate(Connection connection) throws SQLException {
+        PermissionService service = new PermissionServiceMybatisImpl();
         for(Resource resToUpdate : getResources()) {
             Resource dbRes = service.findResource(resToUpdate);
             if(dbRes != null) {
@@ -68,3 +67,4 @@ public class V1_0_2__fix_roles_for_maanmittauslaitos_wmts implements JdbcMigrati
         return list;
     }
 }
+*/

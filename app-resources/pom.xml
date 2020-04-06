@@ -6,7 +6,7 @@
     <parent>
         <groupId>sitowise</groupId>
         <artifactId>etrs89-etrs-tm35fin</artifactId>
-        <version>1.1/version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>app-resources</artifactId>
     <packaging>jar</packaging>

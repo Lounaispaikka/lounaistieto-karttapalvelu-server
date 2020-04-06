@@ -1,4 +1,4 @@
-package flyway.lounaistieto;
+/*package flyway.lounaistieto;
 
 import fi.mml.portti.domain.permissions.Permissions;
 import fi.mml.portti.service.db.permissions.PermissionsService;
@@ -8,9 +8,9 @@ import fi.nls.oskari.domain.User;
 import fi.nls.oskari.domain.map.OskariLayer;
 import fi.nls.oskari.log.LogFactory;
 import fi.nls.oskari.log.Logger;
-import fi.nls.oskari.map.data.domain.OskariLayerResource;
-import fi.nls.oskari.permission.domain.Permission;
-import fi.nls.oskari.permission.domain.Resource;
+import org.oskari.permissions.model.OskariLayerResource;
+import org.oskari.permissions.model.Permission;
+import org.oskari.permissions.model.Resource;
 import fi.nls.oskari.service.ServiceException;
 import fi.nls.oskari.service.UserService;
 import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
@@ -19,10 +19,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+*/
 /**
  * Inserts viewlayer permission for the ortokuva layers used as regionsets for the new thematic maps
  */
+/*
 public class V1_0_18__add_ortokuva_layer_permissions implements JdbcMigration {
     private static final Logger LOG = LogFactory.getLogger(V1_0_18__add_ortokuva_layer_permissions.class);
 
@@ -72,3 +73,4 @@ public class V1_0_18__add_ortokuva_layer_permissions implements JdbcMigration {
     }
 
 }
+*/
