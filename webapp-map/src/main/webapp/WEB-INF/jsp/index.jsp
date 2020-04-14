@@ -9,16 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lounaistiedon Karttapalvelu</title>
 
-    <!-- ====SCRIPTI==== -->
-    <script>
-        $(document).ready(function(){
-        $("#toggle-login").click(function(){
-            $("#login-form").slideToggle("fast");
-        });
-        });
-    </script>
-    <!-- ====SCRIPTI==== -->
-
+    
     <!-- ############# css ################# -->
     <link
             rel="stylesheet"
@@ -55,6 +46,16 @@
         }
     </style>
     <!-- ############# /css ################# -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- ====SCRIPTI==== -->
+    <script>
+        $(document).ready(function(){
+        $("#toggle-login").click(function(){
+            $("#login-form").slideToggle("fast");
+        });
+        });
+    </script>
+    <!-- ====SCRIPTI==== -->
 </head>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
