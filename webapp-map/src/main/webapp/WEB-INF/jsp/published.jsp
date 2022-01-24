@@ -16,19 +16,7 @@
     <link
             rel="stylesheet"
             type="text/css"
-            href="/Oskari/resources/css/forms.css"/>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="/Oskari/resources/css/portal.css"/>
-    <link
-            rel="stylesheet"
-            type="text/css"
             href="/Oskari${path}/icons.css"/>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="/Oskari${path}/css/overwritten.css"/>
     <style type="text/css">
         @media screen {
             body {
@@ -78,27 +66,21 @@
     var controlParams = ${controlParams};
 </script>
 
+
+<!-- Pre-compiled application JS, empty unless created by build job -->
 <script type="text/javascript"
-        src="/Oskari/bundles/bundle.js">
+    src="/Oskari${path}/oskari.min.js">
 </script>
-
-
-<c:if test="${preloaded}">
-    <!-- Pre-compiled application JS, empty unless created by build job -->
-    <script type="text/javascript"
-            src="/Oskari${path}/oskari.min.js">
-    </script>
-    <!-- Minified CSS for preload -->
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="/Oskari${path}/oskari.min.css"
-            />
-    <%--language files --%>
-    <script type="text/javascript"
-            src="/Oskari${path}/oskari_lang_${language}.js">
-    </script>
-</c:if>
+<!-- Minified CSS for preload -->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/Oskari${path}/oskari.min.css"
+/>
+<%--language files --%>
+<script type="text/javascript"
+    src="/Oskari${path}/oskari_lang_${language}.js">
+</script>
 
 <script type="text/javascript"
         src="/Oskari${path}/index.js">
