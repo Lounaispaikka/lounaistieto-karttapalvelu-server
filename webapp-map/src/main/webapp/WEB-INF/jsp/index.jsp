@@ -67,6 +67,7 @@
 
     gtag('config', 'UA-68203085-5');
 </script>
+
 <body>
 
 <nav id="maptools">
@@ -104,10 +105,10 @@
             <%-- Otherwise show appropriate logins --%>
             <c:otherwise>
                 <c:if test="${!empty _login_uri_saml}">
-                    <a href="${pageContext.request.contextPath}${_login_uri_saml}"><spring:message code="login.sso" text="SSO login" /></a><hr />
+                    <a  href="${pageContext.request.contextPath}${_login_uri_saml}"><spring:message code="login.sso" text="SSO login" /></a><hr />
                 </c:if>
                 <c:if test="${!empty _login_uri && !empty _login_field_user}">
-                    <p id="toggle-login" style="color: #FFFFFF;padding-bottom: 5px;"><spring:message code="login" text="Kirjaudu" /></p>
+                    <p id="toggle-login" style="color: #FFFFFF;padding-bottom: 5px;"><spring:message code="admin_login" text="Kirjautuminen" /></p>
                     <form id="login-form" style="display: none;" action='${pageContext.request.contextPath}${_login_uri}' method="post" accept-charset="UTF-8">
                         <input size="16" id="username" name="${_login_field_user}" type="text" placeholder="<spring:message code="username" text="Username" />" autofocus
                                required>

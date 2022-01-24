@@ -35,7 +35,7 @@
             <artifactId>icu4j</artifactId>
             <version>51.1</version>
         </dependency>
-        
+
         <!-- oskari -->
         <dependency>
             <groupId>fi.nls.oskari.service</groupId>
@@ -142,9 +142,9 @@
         </dependency>
 
         <dependency>
-            <groupId>fi.nls.oskari.extras</groupId>
+            <groupId>fi.nls.oskari.service</groupId>
             <artifactId>oskari-search-nls</artifactId>
-            <version>2.1</version>
+            <version>${oskari.version}</version>
         </dependency>
 
     </dependencies>
