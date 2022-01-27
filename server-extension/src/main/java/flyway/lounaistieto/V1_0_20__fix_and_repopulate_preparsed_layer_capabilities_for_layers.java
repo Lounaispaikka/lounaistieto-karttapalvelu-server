@@ -69,7 +69,7 @@ public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers
                 }
                 updateLayer(layer.getId(), layer.getOptions(), jscaps, connection);
                 progress++;
-                LOG.info("Capabilities parsed:", progress, "/", layers.size());
+                LOG.info("Capabilities parsed:"+ progress+ "/"+ layers.size());
             } catch (Exception e) {
                 LOG.error(e, "Error getting capabilities for layer", layer);
             }

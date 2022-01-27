@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class V1_0_19__add_ortokuva_to_background_layer_selection_plugin extends BaseJavaMigration {
     private static final String PLUGIN_ID = "Oskari.mapframework.bundle.mapmodule.plugin.BackgroundLayerSelectionPlugin";
-    private final Logger LOG = LogFactory.getLogger(this.getClass());
+    private final Logger LOG = LogFactory.getLogger(V1_0_19__add_ortokuva_to_background_layer_selection_plugin.class);
 
     @Override
     public void migrate(Context context) throws Exception {
