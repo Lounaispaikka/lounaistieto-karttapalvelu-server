@@ -56,7 +56,7 @@ public class V1_0_28__migrate_tool_config_again extends BaseJavaMigration {
     private boolean modifyConfig(Bundle bundle) throws Exception {
         JSONObject config = JSONHelper.createJSONObject(bundle.config);
         if (config == null) {
-            LOG.warn("Couldn't get config JSON for view:", bundle.viewId);
+            LOG.warn("Couldn't get config JSON for view:"+ bundle.viewId);
             return false;
         }
         config.remove("mapUrlPrefix");
