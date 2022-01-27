@@ -1,13 +1,13 @@
 package flyway.lounaistieto;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
+import fi.nls.oskari.domain.map.view.Bundle;
 import helpers.AdditionalBundleHelperMethods;
 import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
-import fi.nls.oskari.domain.map.view.Bundle;
 import org.oskari.helpers.BundleHelper;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class V1_0_22__register_lang_overrides_bundle extends BaseJavaMigration {
     private static final String NAMESPACE = "lounaistieto";

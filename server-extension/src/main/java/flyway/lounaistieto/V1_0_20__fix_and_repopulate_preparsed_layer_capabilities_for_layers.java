@@ -35,7 +35,7 @@ public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers
 
         List<OskariLayer> layers = getLayers(connection);
 
-        LOG.info("Start generating prepopulated capabilities for layers - count:", layers.size());
+        LOG.info("Start generating prepopulated capabilities for layers - count:"+ layers.size());
         int progress = 0;
         for (OskariLayer layer : layers) {
             try {
@@ -45,7 +45,7 @@ public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers
                     LOG.info("WMTSCapabilities getCapabilities failed - layer: ", layer.getName());
                     continue;
                 }
-                WMTSCapabilities parsed = WMTSPARSER.parseCapabilities(caps.getData());
+                WMTSCapabilities parsed = WMTSCapabilitiesParser.parseCapabilities(caps.getData());
                 if (parsed == null) {
                     LOG.info("WMTSCapabilities capabilities parse failed - layer: ", layer.getName());
                     continue;
@@ -62,7 +62,7 @@ public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers
                 }
 
                 ResourceUrl resUrl = capsLayer.getResourceUrlByType("tile");
-                if(resUrl != null) {
+                if (resUrl != null) {
                     JSONHelper.putValue(layer.getOptions(), "requestEncoding", "REST");
                     JSONHelper.putValue(layer.getOptions(), "format", resUrl.getFormat());
                     JSONHelper.putValue(layer.getOptions(), "urlTemplate", resUrl.getTemplate());

@@ -1,11 +1,11 @@
 package flyway.lounaistieto;
 
-import java.sql.Connection;
-import java.util.List;
-
 import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
 import org.oskari.helpers.AppSetupHelper;
+
+import java.sql.Connection;
+import java.util.List;
 
 /**
  * Adds routesearch bundle to default and user views.

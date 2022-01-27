@@ -1,12 +1,13 @@
 package flyway.lounaistieto;
 
 
-import fi.nls.oskari.domain.map.view.Bundle;;
-import java.sql.Connection;
+import fi.nls.oskari.domain.map.view.Bundle;
 import helpers.AdditionalBundleHelperMethods;
 import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
 import org.oskari.helpers.BundleHelper;
+
+import java.sql.Connection;
 
 /**
  * Checks if bundle is already present in the db and inserts it if not

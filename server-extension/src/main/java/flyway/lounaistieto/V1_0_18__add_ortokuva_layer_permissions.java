@@ -3,6 +3,8 @@ package flyway.lounaistieto;
 import fi.nls.oskari.domain.Role;
 import fi.nls.oskari.domain.User;
 import fi.nls.oskari.domain.map.OskariLayer;
+import fi.nls.oskari.log.LogFactory;
+import fi.nls.oskari.log.Logger;
 import fi.nls.oskari.map.layer.OskariLayerService;
 import fi.nls.oskari.service.OskariComponentManager;
 import fi.nls.oskari.service.ServiceException;
@@ -12,10 +14,10 @@ import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
 import org.oskari.permissions.PermissionService;
 import org.oskari.permissions.PermissionServiceMybatisImpl;
-import org.oskari.permissions.model.*;
-
-import fi.nls.oskari.log.LogFactory;
-import fi.nls.oskari.log.Logger;
+import org.oskari.permissions.model.Permission;
+import org.oskari.permissions.model.PermissionType;
+import org.oskari.permissions.model.Resource;
+import org.oskari.permissions.model.ResourceType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +30,16 @@ public class V1_0_18__add_ortokuva_layer_permissions extends BaseJavaMigration {
     private static final Logger LOG = LogFactory.getLogger(V1_0_18__add_ortokuva_layer_permissions.class);
 
     @Override
-    public void migrate(Context context){
+    public void migrate(Context context) {
 
         PermissionService service = new PermissionServiceMybatisImpl();
-        for(Resource resToUpdate : getResources()) {
+        for (Resource resToUpdate : getResources()) {
             Optional<Resource> dbRes = service.findResource(ResourceType.maplayer, resToUpdate.getMapping());
-            if(dbRes.isPresent()) {
+            if (dbRes.isPresent()) {
                 resToUpdate = dbRes.get();
             }
-            for(Role role : getRoles()) {
-                if(resToUpdate.hasPermission(role, PermissionType.VIEW_LAYER)) {
+            for (Role role : getRoles()) {
+                if (resToUpdate.hasPermission(role, PermissionType.VIEW_LAYER)) {
                     // already had the permission
                     continue;
                 }

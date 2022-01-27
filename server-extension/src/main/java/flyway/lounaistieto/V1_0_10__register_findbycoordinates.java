@@ -5,6 +5,7 @@ import helpers.AdditionalBundleHelperMethods;
 import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
 import org.oskari.helpers.BundleHelper;
+
 import java.sql.Connection;
 
 /**
@@ -22,6 +23,6 @@ public class V1_0_10__register_findbycoordinates extends BaseJavaMigration {
         Bundle bundle = new Bundle();
         bundle.setName(NAME);
         bundle.setConfig(AdditionalBundleHelperMethods.getBundleStartup("/Oskari/packages/framework/bundle/", NAME, "findbycoordinates"));
-        BundleHelper.registerBundle( connection, bundle);
+        BundleHelper.registerBundle(connection, bundle);
     }
 }
