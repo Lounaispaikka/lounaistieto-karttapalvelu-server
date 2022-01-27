@@ -32,49 +32,50 @@ public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers
     @Override
     public void migrate(Context context) throws Exception {
         Connection connection = context.getConnection();
-
-        List<OskariLayer> layers = getLayers(connection);
-
-        LOG.info("Start generating prepopulated capabilities for layers - count:"+ layers.size());
-        int progress = 0;
-        for (OskariLayer layer : layers) {
-            try {
-                OskariLayerCapabilities caps = CAPABILITIES_SERVICE.getCapabilities(layer);
-
-                if (caps == null) {
-                    LOG.info("WMTSCapabilities getCapabilities failed - layer: ", layer.getName());
-                    continue;
-                }
-                WMTSCapabilities parsed = WMTSCapabilitiesParser.parseCapabilities(caps.getData());
-                if (parsed == null) {
-                    LOG.info("WMTSCapabilities capabilities parse failed - layer: ", layer.getName());
-                    continue;
-                }
-                WMTSCapabilitiesLayer capsLayer = parsed.getLayer(layer.getName());
-                if (capsLayer == null) {
-                    LOG.info("WMTSCapabilities layer parse failed - layer: ", layer.getName());
-                    continue;
-                }
-                JSONObject jscaps = LayerJSONFormatterWMTS.createCapabilitiesJSON(parsed, capsLayer);
-                if (jscaps == null) {
-                    LOG.info("WMTSCapabilities json create failed - layer: ", layer.getName());
-                    continue;
-                }
-
-                ResourceUrl resUrl = capsLayer.getResourceUrlByType("tile");
-                if (resUrl != null) {
-                    JSONHelper.putValue(layer.getOptions(), "requestEncoding", "REST");
-                    JSONHelper.putValue(layer.getOptions(), "format", resUrl.getFormat());
-                    JSONHelper.putValue(layer.getOptions(), "urlTemplate", resUrl.getTemplate());
-                }
-                updateLayer(layer.getId(), layer.getOptions(), jscaps, connection);
-                progress++;
-                LOG.info("Capabilities parsed:"+ progress+ "/"+ layers.size());
-            } catch (Exception e) {
-                LOG.error(e, "Error getting capabilities for layer", layer);
-            }
-        }
     }
+//            Commented due making deprication errors in jcaps declaration but not been run anymore.
+//        List<OskariLayer> layers = getLayers(connection);
+//
+//        LOG.info("Start generating prepopulated capabilities for layers - count:"+ layers.size());
+//        int progress = 0;
+//        for (OskariLayer layer : layers) {
+//            try {
+//                OskariLayerCapabilities caps = CAPABILITIES_SERVICE.getCapabilities(layer);
+//
+//                if (caps == null) {
+//                    LOG.info("WMTSCapabilities getCapabilities failed - layer: ", layer.getName());
+//                    continue;
+//                }
+//                WMTSCapabilities parsed = WMTSCapabilitiesParser.parseCapabilities(caps.getData());
+//                if (parsed == null) {
+//                    LOG.info("WMTSCapabilities capabilities parse failed - layer: ", layer.getName());
+//                    continue;
+//                }
+//                WMTSCapabilitiesLayer capsLayer = parsed.getLayer(layer.getName());
+//                if (capsLayer == null) {
+//                    LOG.info("WMTSCapabilities layer parse failed - layer: ", layer.getName());
+//                    continue;
+//                }
+////                JSONObject jscaps = LayerJSONFormatterWMTS.createCapabilitiesJSON(parsed, capsLayer);
+//                if (jscaps == null) {
+//                    LOG.info("WMTSCapabilities json create failed - layer: ", layer.getName());
+//                    continue;
+//                }
+//
+//                ResourceUrl resUrl = capsLayer.getResourceUrlByType("tile");
+//                if (resUrl != null) {
+//                    JSONHelper.putValue(layer.getOptions(), "requestEncoding", "REST");
+//                    JSONHelper.putValue(layer.getOptions(), "format", resUrl.getFormat());
+//                    JSONHelper.putValue(layer.getOptions(), "urlTemplate", resUrl.getTemplate());
+//                }
+//                updateLayer(layer.getId(), layer.getOptions(), jscaps, connection);
+//                progress++;
+//                LOG.info("Capabilities parsed:"+ progress+ "/"+ layers.size());
+//            } catch (Exception e) {
+//                LOG.error(e, "Error getting capabilities for layer", layer);
+//            }
+//        }
+//    }
 
     private void updateLayer(int layerId, JSONObject options, JSONObject capabilities, Connection conn)
             throws SQLException {
