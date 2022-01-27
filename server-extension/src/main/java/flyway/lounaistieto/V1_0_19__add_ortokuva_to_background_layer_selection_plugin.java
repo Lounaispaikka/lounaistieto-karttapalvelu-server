@@ -1,7 +1,9 @@
 package flyway.lounaistieto;
 import fi.nls.oskari.log.LogFactory;
 import fi.nls.oskari.log.Logger;
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
+//import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,12 +15,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class V1_0_19__add_ortokuva_to_background_layer_selection_plugin implements JdbcMigration {
+public class V1_0_19__add_ortokuva_to_background_layer_selection_plugin extends BaseJavaMigration {
     private final Logger LOG = LogFactory.getLogger(this.getClass());
 
     private static final String PLUGIN_ID = "Oskari.mapframework.bundle.mapmodule.plugin.BackgroundLayerSelectionPlugin";
 
-    public void migrate(Connection connection) throws Exception {
+    @Override
+    public void migrate(Context context) throws Exception {
+        Connection connection = context.getConnection();
         Integer ortokuvaId = getOrtokuvaLayer(connection);
         if (ortokuvaId == null) {
             LOG.warn("No ortokuva layer found, skipping rest of migration!");

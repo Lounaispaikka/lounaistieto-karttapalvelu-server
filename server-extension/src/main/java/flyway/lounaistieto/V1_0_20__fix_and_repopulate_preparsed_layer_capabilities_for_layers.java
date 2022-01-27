@@ -12,7 +12,8 @@ import fi.nls.oskari.wmts.WMTSCapabilitiesParser;
 import fi.nls.oskari.wmts.domain.ResourceUrl;
 import fi.nls.oskari.wmts.domain.WMTSCapabilities;
 import fi.nls.oskari.wmts.domain.WMTSCapabilitiesLayer;
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,13 +24,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers implements JdbcMigration {
+public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers extends BaseJavaMigration {
     private static final Logger LOG = LogFactory.getLogger(V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers.class);
     private static final CapabilitiesCacheService CAPABILITIES_SERVICE = OskariComponentManager.getComponentOfType(CapabilitiesCacheService.class);
     private static final WMTSCapabilitiesParser WMTSPARSER = new WMTSCapabilitiesParser();
 
-    public void migrate(Connection connection)
-            throws SQLException {
+    @Override
+    public void migrate(Context context) throws Exception {
+        Connection connection = context.getConnection();
+
         List<OskariLayer> layers = getLayers(connection);
 
         LOG.info("Start generating prepopulated capabilities for layers - count:", layers.size());

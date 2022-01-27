@@ -10,23 +10,23 @@ import fi.nls.oskari.log.Logger;
 import fi.nls.oskari.service.ServiceException;
 import fi.nls.oskari.service.ServiceRuntimeException;
 import fi.nls.oskari.service.UserService;
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
 import org.oskari.permissions.PermissionService;
 import org.oskari.permissions.PermissionServiceMybatisImpl;
 import org.oskari.permissions.model.*;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
 
-public class V1_0_2__fix_roles_for_maanmittauslaitos_wmts implements JdbcMigration {
+public class V1_0_2__fix_roles_for_maanmittauslaitos_wmts extends BaseJavaMigration {
     private static final Logger LOG = LogFactory.getLogger(V1_0_2__fix_roles_for_maanmittauslaitos_wmts.class);
 
-    public void migrate(Connection connection)
-            throws SQLException {
+    @Override
+    public void migrate(Context context)  {
+
         PermissionService service = new PermissionServiceMybatisImpl();
         for(Resource resToUpdate : getResources()) {
             Optional<Resource> dbRes = service.findResource(ResourceType.maplayer, resToUpdate.getMapping());
