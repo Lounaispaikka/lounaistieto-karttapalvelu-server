@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>sitowise</groupId>
     <artifactId>etrs89-etrs-tm35fin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
     <name>EPSG:3067 Oskari applications</name>
 
     <properties>
-        <oskari.version>1.56.0</oskari.version>
+        <oskari.version>2.0.0</oskari.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
 
@@ -36,9 +36,16 @@
 
     <dependencyManagement>
         <dependencies>
+<!--            <dependency>-->
+<!--                <groupId>fi.nls.oskari</groupId>-->
+<!--                <artifactId>oskari-parent</artifactId>-->
+<!--                <version>${oskari.version}</version>-->
+<!--                <scope>import</scope>-->
+<!--                <type>pom</type>-->
+<!--            </dependency>-->
             <dependency>
-                <groupId>fi.nls.oskari</groupId>
-                <artifactId>oskari-parent</artifactId>
+                <groupId>org.oskari</groupId>
+                <artifactId>oskari-server</artifactId>
                 <version>${oskari.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
