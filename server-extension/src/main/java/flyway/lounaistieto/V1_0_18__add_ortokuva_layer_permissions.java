@@ -3,21 +3,22 @@ package flyway.lounaistieto;
 import fi.nls.oskari.domain.Role;
 import fi.nls.oskari.domain.User;
 import fi.nls.oskari.domain.map.OskariLayer;
+import fi.nls.oskari.log.LogFactory;
+import fi.nls.oskari.log.Logger;
 import fi.nls.oskari.map.layer.OskariLayerService;
 import fi.nls.oskari.service.OskariComponentManager;
 import fi.nls.oskari.service.ServiceException;
 import fi.nls.oskari.service.ServiceRuntimeException;
 import fi.nls.oskari.service.UserService;
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
 import org.oskari.permissions.PermissionService;
 import org.oskari.permissions.PermissionServiceMybatisImpl;
-import org.oskari.permissions.model.*;
+import org.oskari.permissions.model.Permission;
+import org.oskari.permissions.model.PermissionType;
+import org.oskari.permissions.model.Resource;
+import org.oskari.permissions.model.ResourceType;
 
-import fi.nls.oskari.log.LogFactory;
-import fi.nls.oskari.log.Logger;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,19 +26,20 @@ import java.util.Optional;
 /**
  * Inserts viewlayer permission for the ortokuva layers used as regionsets for the new thematic maps
  */
-public class V1_0_18__add_ortokuva_layer_permissions implements JdbcMigration {
+public class V1_0_18__add_ortokuva_layer_permissions extends BaseJavaMigration {
     private static final Logger LOG = LogFactory.getLogger(V1_0_18__add_ortokuva_layer_permissions.class);
 
-    public void migrate(Connection connection)
-            throws SQLException {
+    @Override
+    public void migrate(Context context) {
+
         PermissionService service = new PermissionServiceMybatisImpl();
-        for(Resource resToUpdate : getResources()) {
+        for (Resource resToUpdate : getResources()) {
             Optional<Resource> dbRes = service.findResource(ResourceType.maplayer, resToUpdate.getMapping());
-            if(dbRes.isPresent()) {
+            if (dbRes.isPresent()) {
                 resToUpdate = dbRes.get();
             }
-            for(Role role : getRoles()) {
-                if(resToUpdate.hasPermission(role, PermissionType.VIEW_LAYER)) {
+            for (Role role : getRoles()) {
+                if (resToUpdate.hasPermission(role, PermissionType.VIEW_LAYER)) {
                     // already had the permission
                     continue;
                 }

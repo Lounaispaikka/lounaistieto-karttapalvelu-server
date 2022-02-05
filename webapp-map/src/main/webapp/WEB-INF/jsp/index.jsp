@@ -75,10 +75,6 @@
         <div class="logo ${language}">
         </div>
     </a>
-    <div id="lounais-text">
-        <div>Paikkatietoa</div>
-        <div>Lounais-Suomesta</div>
-    </div>
 
     <div id="loginbar">
     </div>
