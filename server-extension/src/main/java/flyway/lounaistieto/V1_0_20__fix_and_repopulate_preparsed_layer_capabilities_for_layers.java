@@ -12,7 +12,8 @@ import fi.nls.oskari.wmts.WMTSCapabilitiesParser;
 import fi.nls.oskari.wmts.domain.ResourceUrl;
 import fi.nls.oskari.wmts.domain.WMTSCapabilities;
 import fi.nls.oskari.wmts.domain.WMTSCapabilitiesLayer;
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,55 +24,58 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers implements JdbcMigration {
+public class V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers extends BaseJavaMigration {
     private static final Logger LOG = LogFactory.getLogger(V1_0_20__fix_and_repopulate_preparsed_layer_capabilities_for_layers.class);
     private static final CapabilitiesCacheService CAPABILITIES_SERVICE = OskariComponentManager.getComponentOfType(CapabilitiesCacheService.class);
     private static final WMTSCapabilitiesParser WMTSPARSER = new WMTSCapabilitiesParser();
 
-    public void migrate(Connection connection)
-            throws SQLException {
-        List<OskariLayer> layers = getLayers(connection);
-
-        LOG.info("Start generating prepopulated capabilities for layers - count:", layers.size());
-        int progress = 0;
-        for (OskariLayer layer : layers) {
-            try {
-                OskariLayerCapabilities caps = CAPABILITIES_SERVICE.getCapabilities(layer);
-
-                if (caps == null) {
-                    LOG.info("WMTSCapabilities getCapabilities failed - layer: ", layer.getName());
-                    continue;
-                }
-                WMTSCapabilities parsed = WMTSPARSER.parseCapabilities(caps.getData());
-                if (parsed == null) {
-                    LOG.info("WMTSCapabilities capabilities parse failed - layer: ", layer.getName());
-                    continue;
-                }
-                WMTSCapabilitiesLayer capsLayer = parsed.getLayer(layer.getName());
-                if (capsLayer == null) {
-                    LOG.info("WMTSCapabilities layer parse failed - layer: ", layer.getName());
-                    continue;
-                }
-                JSONObject jscaps = LayerJSONFormatterWMTS.createCapabilitiesJSON(parsed, capsLayer);
-                if (jscaps == null) {
-                    LOG.info("WMTSCapabilities json create failed - layer: ", layer.getName());
-                    continue;
-                }
-
-                ResourceUrl resUrl = capsLayer.getResourceUrlByType("tile");
-                if(resUrl != null) {
-                    JSONHelper.putValue(layer.getOptions(), "requestEncoding", "REST");
-                    JSONHelper.putValue(layer.getOptions(), "format", resUrl.getFormat());
-                    JSONHelper.putValue(layer.getOptions(), "urlTemplate", resUrl.getTemplate());
-                }
-                updateLayer(layer.getId(), layer.getOptions(), jscaps, connection);
-                progress++;
-                LOG.info("Capabilities parsed:", progress, "/", layers.size());
-            } catch (Exception e) {
-                LOG.error(e, "Error getting capabilities for layer", layer);
-            }
-        }
+    @Override
+    public void migrate(Context context) throws Exception {
+        Connection connection = context.getConnection();
     }
+//            Commented due making deprication errors in jcaps declaration but not been run anymore.
+//        List<OskariLayer> layers = getLayers(connection);
+//
+//        LOG.info("Start generating prepopulated capabilities for layers - count:"+ layers.size());
+//        int progress = 0;
+//        for (OskariLayer layer : layers) {
+//            try {
+//                OskariLayerCapabilities caps = CAPABILITIES_SERVICE.getCapabilities(layer);
+//
+//                if (caps == null) {
+//                    LOG.info("WMTSCapabilities getCapabilities failed - layer: ", layer.getName());
+//                    continue;
+//                }
+//                WMTSCapabilities parsed = WMTSCapabilitiesParser.parseCapabilities(caps.getData());
+//                if (parsed == null) {
+//                    LOG.info("WMTSCapabilities capabilities parse failed - layer: ", layer.getName());
+//                    continue;
+//                }
+//                WMTSCapabilitiesLayer capsLayer = parsed.getLayer(layer.getName());
+//                if (capsLayer == null) {
+//                    LOG.info("WMTSCapabilities layer parse failed - layer: ", layer.getName());
+//                    continue;
+//                }
+////                JSONObject jscaps = LayerJSONFormatterWMTS.createCapabilitiesJSON(parsed, capsLayer);
+//                if (jscaps == null) {
+//                    LOG.info("WMTSCapabilities json create failed - layer: ", layer.getName());
+//                    continue;
+//                }
+//
+//                ResourceUrl resUrl = capsLayer.getResourceUrlByType("tile");
+//                if (resUrl != null) {
+//                    JSONHelper.putValue(layer.getOptions(), "requestEncoding", "REST");
+//                    JSONHelper.putValue(layer.getOptions(), "format", resUrl.getFormat());
+//                    JSONHelper.putValue(layer.getOptions(), "urlTemplate", resUrl.getTemplate());
+//                }
+//                updateLayer(layer.getId(), layer.getOptions(), jscaps, connection);
+//                progress++;
+//                LOG.info("Capabilities parsed:"+ progress+ "/"+ layers.size());
+//            } catch (Exception e) {
+//                LOG.error(e, "Error getting capabilities for layer", layer);
+//            }
+//        }
+//    }
 
     private void updateLayer(int layerId, JSONObject options, JSONObject capabilities, Connection conn)
             throws SQLException {

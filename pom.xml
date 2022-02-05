@@ -3,15 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>dimenteq</groupId>
+    <groupId>sitowise</groupId>
     <artifactId>etrs89-etrs-tm35fin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
     <name>EPSG:3067 Oskari applications</name>
 
     <properties>
-        <oskari.version>1.47.1</oskari.version>
-
+        <oskari.version>2.6.0</oskari.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
 
@@ -26,21 +25,40 @@
         <repository>
             <id>oskari_org</id>
             <name>Oskari.org release repository</name>
-            <url>http://oskari.org/nexus/content/repositories/releases/</url>
+            <url>https://oskari.org/nexus/content/repositories/releases/</url>
         </repository>
         <repository>
             <id>oskari_org_snapshot</id>
             <name>Oskari.org snapshot repository</name>
-            <url>http://oskari.org/nexus/content/repositories/snapshots/</url>
+            <url>https://oskari.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+<!--            <dependency>-->
+<!--                <groupId>fi.nls.oskari</groupId>-->
+<!--                <artifactId>oskari-parent</artifactId>-->
+<!--                <version>${oskari.version}</version>-->
+<!--                <scope>import</scope>-->
+<!--                <type>pom</type>-->
+<!--            </dependency>-->
+            <dependency>
+                <groupId>org.oskari</groupId>
+                <artifactId>oskari-server</artifactId>
+                <version>${oskari.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -49,7 +67,7 @@
 
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.2.2</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
@@ -61,7 +79,6 @@
         <module>app-resources</module>
         <module>server-extension</module>
         <module>webapp-map</module>
-        <module>webapp-transport</module>
     </modules>
 
 </project>

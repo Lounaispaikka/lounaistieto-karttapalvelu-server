@@ -1,11 +1,13 @@
 package flyway.lounaistieto;
+
 import fi.nls.oskari.log.LogFactory;
 import fi.nls.oskari.log.Logger;
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
+import fi.nls.oskari.util.JSONHelper;
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import fi.nls.oskari.util.JSONHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,12 +15,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class V1_0_19__add_ortokuva_to_background_layer_selection_plugin implements JdbcMigration {
-    private final Logger LOG = LogFactory.getLogger(this.getClass());
-
+public class V1_0_19__add_ortokuva_to_background_layer_selection_plugin extends BaseJavaMigration {
     private static final String PLUGIN_ID = "Oskari.mapframework.bundle.mapmodule.plugin.BackgroundLayerSelectionPlugin";
+    private final Logger LOG = LogFactory.getLogger(V1_0_19__add_ortokuva_to_background_layer_selection_plugin.class);
 
-    public void migrate(Connection connection) throws Exception {
+    @Override
+    public void migrate(Context context) throws Exception {
+        Connection connection = context.getConnection();
         Integer ortokuvaId = getOrtokuvaLayer(connection);
         if (ortokuvaId == null) {
             LOG.warn("No ortokuva layer found, skipping rest of migration!");

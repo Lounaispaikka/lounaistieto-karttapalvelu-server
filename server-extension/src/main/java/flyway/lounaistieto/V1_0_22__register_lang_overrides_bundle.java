@@ -1,24 +1,29 @@
 package flyway.lounaistieto;
 
-import java.sql.Connection;
-
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
-
-import fi.nls.oskari.db.BundleHelper;
 import fi.nls.oskari.domain.map.view.Bundle;
+import helpers.AdditionalBundleHelperMethods;
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
+import org.oskari.helpers.BundleHelper;
 
-public class V1_0_22__register_lang_overrides_bundle implements JdbcMigration{
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class V1_0_22__register_lang_overrides_bundle extends BaseJavaMigration {
     private static final String NAMESPACE = "lounaistieto";
     private static final String LANG_OVERRIDES = "lounaistieto-lang-overrides";
 
-    public void migrate(Connection connection) {
+    @Override
+    public void migrate(Context context) throws SQLException {
+        Connection connection = context.getConnection();
+
         // BundleHelper checks if these bundles are already registered
-        Bundle linkPanel = new Bundle();
-        linkPanel.setConfig("{}");
-        linkPanel.setState("{}");
-        linkPanel.setName(LANG_OVERRIDES);
-        linkPanel.setStartup(BundleHelper.getDefaultBundleStartup(NAMESPACE, LANG_OVERRIDES, "Lang overrides"));
-        BundleHelper.registerBundle(linkPanel);
+        Bundle bundle = new Bundle();
+        bundle.setName(LANG_OVERRIDES);
+        bundle.setConfig("{}");
+        bundle.setState("{}");
+        bundle.setConfig(AdditionalBundleHelperMethods.getBundleStartup("/Oskari/packages/lounaistieto/bundle/", LANG_OVERRIDES, "start-info-popup"));
+        BundleHelper.registerBundle(connection, bundle);
     }
 }
 

@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>dimenteq</groupId>
+        <groupId>sitowise</groupId>
         <artifactId>etrs89-etrs-tm35fin</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>webapp-map</artifactId>
@@ -18,12 +18,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>dimenteq</groupId>
+            <groupId>sitowise</groupId>
             <artifactId>app-resources</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>dimenteq</groupId>
+            <groupId>sitowise</groupId>
             <artifactId>server-extension</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -37,37 +37,126 @@
         </dependency>
 
         <!-- oskari -->
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>oskari-control-example</artifactId>-->
+<!--            <version>${oskari.version}</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>fi.nls.oskari.service</groupId>
-            <artifactId>oskari-control-example</artifactId>
-            <version>${oskari.version}</version>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-example</artifactId>
         </dependency>
 
         <!-- support for user registration -->
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>oskari-control-users</artifactId>-->
+<!--            <version>${oskari.version}</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>fi.nls.oskari.service</groupId>
-            <artifactId>oskari-control-users</artifactId>
-            <version>${oskari.version}</version>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-users</artifactId>
         </dependency>
 
         <!-- support for myplaces functionality -->
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>oskari-control-myplaces</artifactId>-->
+<!--            <version>${oskari.version}</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>fi.nls.oskari.service</groupId>
-            <artifactId>oskari-control-myplaces</artifactId>
-            <version>${oskari.version}</version>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-myplaces</artifactId>
         </dependency>
 
         <!-- admin routes -->
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>oskari-control-admin</artifactId>-->
+<!--            <version>${oskari.version}</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>fi.nls.oskari.service</groupId>
-            <artifactId>oskari-control-admin</artifactId>
-            <version>${oskari.version}</version>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-admin</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>oskari-control-base</artifactId>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>fi.nls.oskari</groupId>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-base</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>oskari-control-routing</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-routing</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>oskari-control-statistics</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-statistics</artifactId>
+        </dependency>
+        <!-- Statistics plugins -->
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.service</groupId>-->
+<!--            <artifactId>service-statistics-pxweb</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.oskari.service</groupId>-->
+<!--            <artifactId>service-statistics-unsd</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.oskari</groupId>
+            <artifactId>service-statistics-pxweb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.oskari</groupId>
+            <artifactId>service-statistics-unsd</artifactId>
+        </dependency>
+        <!-- /Statistics plugins -->
+
+        <dependency>
+            <groupId>org.oskari</groupId>
+            <artifactId>control-userlayer</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari</groupId>-->
+<!--            <artifactId>service-logging</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.oskari</groupId>
+            <artifactId>service-logging</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.apache.logging.log4j</groupId>-->
+<!--            <artifactId>log4j-slf4j-impl</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari</groupId>-->
+<!--            <artifactId>servlet-map</artifactId>-->
+<!--            <version>${oskari.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.ibm.icu</groupId>-->
+<!--                    <artifactId>icu4j</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.oskari</groupId>
             <artifactId>servlet-map</artifactId>
-            <version>${oskari.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.ibm.icu</groupId>
@@ -76,16 +165,19 @@
             </exclusions>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari</groupId>-->
+<!--            <artifactId>service-logging</artifactId>-->
+<!--            <version>${oskari.version}</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>fi.nls.oskari</groupId>
+            <groupId>org.oskari</groupId>
             <artifactId>service-logging</artifactId>
-            <version>${oskari.version}</version>
         </dependency>
         <!-- /oskari -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -94,15 +186,25 @@
         </dependency>
 
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>fi.nls.oskari.extras</groupId>-->
+<!--            <artifactId>oskari-search-nls</artifactId>-->
+<!--            <version>2.1</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>fi.nls.oskari.service</groupId>
+            <groupId>fi.nls.oskari.extras</groupId>
             <artifactId>oskari-search-nls</artifactId>
-            <version>${oskari.version}</version>
+            <version>3.6.1</version>
         </dependency>
 
     </dependencies>

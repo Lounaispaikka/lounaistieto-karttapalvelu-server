@@ -1,25 +1,29 @@
 package flyway.lounaistieto;
 
-import fi.nls.oskari.util.FlywayHelper;
-import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
+import org.flywaydb.core.api.migration.BaseJavaMigration;
+import org.flywaydb.core.api.migration.Context;
+import org.oskari.helpers.AppSetupHelper;
 
 import java.sql.Connection;
 import java.util.List;
 
+
 /**
  * Adds printout bundle to default and user views.
  */
-public class V1_0_6__add_printout_to_default_views implements JdbcMigration {
+public class V1_0_6__add_printout_to_default_views extends BaseJavaMigration {
     private static final String BUNDLE_ID = "printout";
 
-    public void migrate(Connection connection) throws Exception {
+    @Override
+    public void migrate(Context context) throws Exception {
+        Connection connection = context.getConnection();
 
-        final List<Long> views = FlywayHelper.getUserAndDefaultViewIds(connection);
+        final List<Long> views = AppSetupHelper.getSetupsForUserAndDefaultType(connection);
         for (Long viewId : views) {
-            if (FlywayHelper.viewContainsBundle(connection, BUNDLE_ID, viewId)) {
+            if (AppSetupHelper.appContainsBundle(connection, viewId, BUNDLE_ID)) {
                 continue;
             }
-            FlywayHelper.addBundleWithDefaults(connection, viewId, BUNDLE_ID);
+            AppSetupHelper.addBundleToApp(connection, viewId, BUNDLE_ID);
         }
     }
 }
