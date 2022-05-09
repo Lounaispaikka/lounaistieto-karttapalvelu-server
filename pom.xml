@@ -3,46 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>sitowise</groupId>
-    <artifactId>etrs89-etrs-tm35fin</artifactId>
+    <groupId>fi.lounaistieto</groupId>
+    <artifactId>karttapalvelu</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
     <name>EPSG:3067 Oskari applications</name>
 
     <properties>
-        <oskari.version>2.6.0</oskari.version>
+        <oskari.version>2.7.1</oskari.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-
-        <commons-dbcp2.version>2.0.1</commons-dbcp2.version>
-        <postgresql.version>42.1.4</postgresql.version>
-        <junit.version>4.11</junit.version>
-        <slf4j.version>1.7.12</slf4j.version>
-        <jackson.version>2.9.0</jackson.version>
     </properties>
 
     <repositories>
         <repository>
             <id>oskari_org</id>
             <name>Oskari.org release repository</name>
-            <url>https://oskari.org/nexus/content/repositories/releases/</url>
+            <url>https://oskari.org/repository/maven/releases/</url>
         </repository>
         <repository>
             <id>oskari_org_snapshot</id>
             <name>Oskari.org snapshot repository</name>
-            <url>https://oskari.org/nexus/content/repositories/snapshots/</url>
+            <url>https://oskari.org/repository/maven/snapshots/</url>
         </repository>
     </repositories>
 
     <dependencyManagement>
         <dependencies>
-<!--            <dependency>-->
-<!--                <groupId>fi.nls.oskari</groupId>-->
-<!--                <artifactId>oskari-parent</artifactId>-->
-<!--                <version>${oskari.version}</version>-->
-<!--                <scope>import</scope>-->
-<!--                <type>pom</type>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>org.oskari</groupId>
                 <artifactId>oskari-server</artifactId>
@@ -58,7 +45,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -67,7 +54,7 @@
 
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.3.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>

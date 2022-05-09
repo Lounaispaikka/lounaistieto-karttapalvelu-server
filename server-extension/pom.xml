@@ -4,33 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>sitowise</groupId>
-        <artifactId>etrs89-etrs-tm35fin</artifactId>
+        <groupId>fi.lounaistieto</groupId>
+        <artifactId>karttapalvelu</artifactId>
         <version>1.0.1</version>
     </parent>
     <artifactId>server-extension</artifactId>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>fi.nls.oskari.service</groupId>-->
-<!--            <artifactId>oskari-control-base</artifactId>-->
-<!--            <version>${oskari.version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.oskari</groupId>
             <artifactId>control-base</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.oskari</groupId>
-            <artifactId>content-resources</artifactId>
-        </dependency>
-
     </dependencies>
 </project>
