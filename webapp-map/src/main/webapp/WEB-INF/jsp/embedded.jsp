@@ -1,22 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Standalone servlet - ${viewName} view</title>
+    <title>${viewName}</title>
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <script type="text/javascript" src="/Oskari/libraries/jquery/jquery-1.10.2.min.js">
-    </script>
-
-    <!-- IE 9 polyfill for openlayers 3 - https://github.com/openlayers/ol3/issues/4865 -->
-    <!--[if lte IE 9]> <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,requestAnimationFrame,Element.prototype.classList"></script> <![endif]-->
 
     <!-- ############# css ################# -->
     <link
             rel="stylesheet"
             type="text/css"
             href="/Oskari${path}/icons.css"/>
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/Oskari${path}/oskari.min.css"/>
     <style type="text/css">
         @media screen {
             body {
@@ -71,12 +69,7 @@
 <script type="text/javascript"
     src="/Oskari${path}/oskari.min.js">
 </script>
-<!-- Minified CSS for preload -->
-<link
-    rel="stylesheet"
-    type="text/css"
-    href="/Oskari${path}/oskari.min.css"
-/>
+
 <%--language files --%>
 <script type="text/javascript"
     src="/Oskari${path}/oskari_lang_${language}.js">

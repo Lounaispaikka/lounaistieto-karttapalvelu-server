@@ -15,6 +15,13 @@
             rel="stylesheet"
             type="text/css"
             href="/Oskari${path}/icons.css"/>
+
+<!-- Minified CSS for preload -->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/Oskari${path}/oskari.min.css"
+/>
     <style type="text/css">
         @media screen {
             body {
@@ -46,16 +53,6 @@
         }
     </style>
     <!-- ############# /css ################# -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- ====SCRIPTI==== -->
-    <script>
-        $(document).ready(function(){
-        $("#toggle-login").click(function(){
-            $("#login-form").slideToggle("fast");
-        });
-        });
-    </script>
-    <!-- ====SCRIPTI==== -->
 </head>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -148,17 +145,20 @@
 <script type="text/javascript"
     src="/Oskari${path}/oskari.min.js">
 </script>
-<!-- Minified CSS for preload -->
-<link
-    rel="stylesheet"
-    type="text/css"
-    href="/Oskari${path}/oskari.min.css"
-/>
 <%--language files --%>
 <script type="text/javascript"
     src="/Oskari${path}/oskari_lang_${language}.js">
 </script>
 
+<!-- ====SCRIPTI==== -->
+<script>
+    $(document).ready(function(){
+    $("#toggle-login").click(function(){
+        $("#login-form").slideToggle("fast");
+    });
+    });
+</script>
+<!-- ====SCRIPTI==== -->
 <script type="text/javascript"
         src="/Oskari${path}/index.js">
 </script>
