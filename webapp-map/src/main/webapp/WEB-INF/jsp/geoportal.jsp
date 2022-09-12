@@ -152,9 +152,9 @@
 
 <!-- ====SCRIPTI==== -->
 <script>
-    $(document).ready(function(){
-    $("#toggle-login").click(function(){
-        $("#login-form").slideToggle("fast");
+    jQuery(document).ready(function(){
+    jQuery("#toggle-login").click(function(){
+        jQuery("#login-form").slideToggle("fast");
     });
     });
 </script>
