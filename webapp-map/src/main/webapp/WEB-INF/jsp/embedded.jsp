@@ -43,6 +43,23 @@
     gtag('config', 'UA-68203085-5');
 </script>
 
+<!-- Matomo -->
+<script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['requireCookieConsent']);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="https://mtm.utu.fi/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '8']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+
 <body>
 <div id="contentMap" class="oskariui container-fluid published">
     <div class="row-fluid" style="height: 100%; background-color:white;">
