@@ -85,6 +85,15 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
+        <!-- JSTL not needed for Jetty, but required by Tomcat -->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>fi.nls.oskari.extras</groupId>
             <artifactId>oskari-search-nls</artifactId>
