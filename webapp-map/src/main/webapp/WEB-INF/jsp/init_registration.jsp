@@ -1,10 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title><spring:message code="user.registration.title"/></title>
